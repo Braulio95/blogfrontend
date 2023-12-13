@@ -1,0 +1,72 @@
+[
+    {
+      "id": 1,
+      "title": "Título del Artículo 1",
+      "articleAuthor": "Autor 1",
+      "articleDate": "Fecha 1",
+      "articleDescription": "Contenido del Artículo 1"
+    },
+    {
+      "id": 2,
+      "title": "Título del Artículo 2",
+      "articleAuthor": "Autor 2",
+      "articleDate": "Fecha 2",
+      "articleDescription": "Contenido del Artículo 2"
+    },
+    {
+      "id": 3,
+      "title": "Título del Artículo 3",
+      "articleAuthor": "Autor 3",
+      "articleDate": "Fecha 3",
+      "articleDescription": "Contenido del Artículo 3"
+    },
+    {
+      "id": 4,
+      "title": "Título del Artículo 4",
+      "articleAuthor": "Autor 4",
+      "articleDate": "Fecha 4",
+      "articleDescription": "Contenido del Artículo 4"
+    },
+    {
+      "id": 5,
+      "title": "Título del Artículo 5",
+      "articleAuthor": "Autor 5",
+      "articleDate": "Fecha 5",
+      "articleDescription": "Contenido del Artículo 5"
+    },
+    {
+      "id": 6,
+      "title": "Título del Artículo 6",
+      "articleAuthor": "Autor 6",
+      "articleDate": "Fecha 6",
+      "articleDescription": "Contenido del Artículo 6"
+    },
+    {
+      "id": 7,
+      "title": "Título del Artículo 7",
+      "articleAuthor": "Autor 7",
+      "articleDate": "Fecha 7",
+      "articleDescription": "Contenido del Artículo 7"
+    },
+    {
+      "id": 8,
+      "title": "Título del Artículo 8",
+      "articleAuthor": "Autor 8",
+      "articleDate": "Fecha 8",
+      "articleDescription": "Contenido del Artículo 8"
+    },
+    {
+      "id": 9,
+      "title": "Título del Artículo 9",
+      "articleAuthor": "Autor 9",
+      "articleDate": "Fecha 9",
+      "articleDescription": "Contenido del Artículo 9"
+    },
+    {
+      "id": 10,
+      "title": "Título del Artículo 10",
+      "articleAuthor": "Autor 10",
+      "articleDate": "Fecha 10",
+      "articleDescription": "Decimo articulo"
+    }
+  ]

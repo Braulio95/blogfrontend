@@ -1,7 +1,15 @@
 <template>
     <div class="preview-container">
-        <div class="container">
-            <p>Hola mundo</p>
+        <div id="preview-article-container" class="container">
+            <img class="article-thumbnail" src="https://picsum.photos/400" alt="">
+            <div class="info-container">
+                <p class="title">{{ title }}</p>
+                <p class="article-author">Por: {{ articleAuthor }}</p>
+                <p class="article-date">Publicado el: {{ articleDate }}</p>
+                <p class="article-short">
+                    {{ articleDescription }}
+                </p>
+            </div>
         </div>
     </div>  
 </template>
@@ -11,14 +19,77 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ArticlePreview",
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    articleAuthor: {
+      type: String,
+      required: true,
+    },
+    articleDate: {
+      type: String,
+      required: true,
+    },
+    articleDescription: {
+      type: String,
+      required: true,
+    },
+  },
 });
 
 </script>
 
 <style scoped>
-
 .container{
     margin: auto;
+    display: flex;
+    padding-block: 1rem;
+}
+
+.preview-container{
+    border-bottom: 1px solid black;
+}
+
+.article-thumbnail{
+    width: 200px;
+    margin-inline-end: 1rem;
+}
+
+.info-container{
+    display: block;
+}
+
+.title{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+p.article-author, p.article-date{
+    color: gray;
+    font-size: 0.7rem;
+}
+
+@media (max-aspect-ratio: 3/4) {
+#preview-article-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.article-thumbnail{
+    margin-inline: auto;
+    border-radius: 50%;
+}
+
+.info-container{
+    display: flex;
+    flex-direction: column;
+}
+
+p.title{
+    margin-inline: auto;
+}
 }
 
 </style>

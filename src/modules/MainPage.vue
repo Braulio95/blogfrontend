@@ -1,17 +1,41 @@
 <template>
     <div class="container">
-    <h1>Bienvenido al blog</h1>
-    <ArticlePreview/>
+        <ArticlePreview
+            v-for="article in articles"
+            :key="article.id"
+            :title="article.title"
+            :articleAuthor="article.articleAuthor"
+            :articleDate="article.articleDate"
+            :articleDescription="article.articleDescription"
+    />
     </div>  
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import ArticlePreview from '../components/ArticlePreview.vue'
+import { fetchArticles, Article } from '../services/api';
 
 export default defineComponent({
   name: "MainPage",
   components:{
     ArticlePreview
+  },
+  data(){
+    return{
+        articles: [] as Article[],
+    }
+  },
+  created() {
+    this.fetchArticles();
+  },
+  methods: {
+    async fetchArticles() {
+      try {
+        this.articles = await fetchArticles();
+      } catch (error) {
+        console.error('Error al obtener los artículos:', error);
+      }
+    }
   }
 });
 
