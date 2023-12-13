@@ -1,5 +1,9 @@
 <template>
-    <p>Hola mundo mundial!!!!!!!!</p>
+    <div class="preview-container">
+        <div class="container">
+            <p>Hola mundo</p>
+        </div>
+    </div>  
 </template>
 
 <script lang="ts">
@@ -10,3 +14,11 @@ export default defineComponent({
 });
 
 </script>
+
+<style scoped>
+
+.container{
+    margin: auto;
+}
+
+</style>

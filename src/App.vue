@@ -1,17 +1,17 @@
 <template>
   <NavBar/>
-  <ArticlePreview/>
+  <MainPage/>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import NavBar from "./components/NavBar.vue"
-import ArticlePreview from "./components/ArticlePreview.vue"
+import MainPage from "./modules/MainPage.vue"
 
 export default defineComponent({
   name: "App",
   components:{
-    NavBar, ArticlePreview
+    NavBar, MainPage
   }
 });
 </script>
