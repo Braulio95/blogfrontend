@@ -1,9 +1,11 @@
 <template>
     <div class="article-detail" v-if="article">
-      <h1>{{ article.title }}</h1>
-      <p>{{ article.articleAuthor }}</p>
-      <p>{{ article.articleDate }}</p>
-      <p>{{ article.articleDescription }}</p>
+      <div class="container">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.articleAuthor }}</p>
+        <p>{{ article.articleDate }}</p>
+        <p>{{ article.articleDescription }}</p>
+      </div>
     </div>
   </template>
   
@@ -28,10 +30,17 @@
       try {
         this.article = await fetchArticleById(id);
       } catch (error) {
-        console.error('Error al obtener los artículos:', error);
+        console.error('Error al obtener el articulo :(', error);
       }
     }
     }
   });
   </script>
+
+<style scoped>
+.article-detail{
+  margin-top: 62px;
+}
+
+</style>
   
