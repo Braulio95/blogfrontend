@@ -17,9 +17,11 @@ export interface UserDB {
 
 export async function fetchUsers(): Promise<User[]> {
     try {
-        const response = await fetch('/users.json');
-        const data: UserDB[] = await response.json();
-        const parsedData = data.map(({ _id, username, email, password, createdAt }) => {
+        const url = 'http://18.217.200.184:4000/v1/users'
+        const response = await fetch(url);
+        const data = await response.json();
+        const users: UserDB[] = data.users
+        const parsedUsers = users.map(({ _id, username, email, password, createdAt }) => {
             return ({
                 id: _id,
                 username: username,
@@ -28,7 +30,7 @@ export async function fetchUsers(): Promise<User[]> {
                 createdAt: createdAt
             })
         })
-        return parsedData;
+        return parsedUsers;
     } catch (error) {
         console.error('Error al obtener los usuarios:', error);
         throw error;
