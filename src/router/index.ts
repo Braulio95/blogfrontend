@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import MainPage from '../views/MainPage.vue';
-import ArticleDetail from '../views/ArticleDetail.vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import MainPage from '../modules/MainPage.vue';
+import ArticleDetail from '../modules/ArticleDetail.vue';
 
-const routes: Array<RouteRecordRaw> = [
+const routes = [
     { path: '/', component: MainPage },
-    { path: '/:id', component: ArticleDetail, name: 'articleDetail' },
+    { path: '/:id', name: 'articleDetail', component: ArticleDetail },
 ];
 
 const router = createRouter({
