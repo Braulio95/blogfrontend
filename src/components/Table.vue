@@ -4,16 +4,14 @@
         <table>
             <thead>
                 <tr>
-                    <th>Encabezado 1</th>
-                    <th>Encabezado 2</th>
+                    <th v-for="header in headers">{{header}}</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Fila 1, Columna 1</td>
-                    <td>Fila 1, Columna 2</td>
-                    <td>Editar/Eliminar</td>
+                <tr v-for="item in rows">
+                    <td v-for="value in Object.values(item)">{{ value }}</td>
+                    <td>Editar / Borrar</td>
                 </tr>
             </tbody>
         </table>
@@ -21,7 +19,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+import { Article } from "@/services/api";
 
 export default defineComponent({
     name: "Table",
@@ -29,6 +28,14 @@ export default defineComponent({
     tableTitle:{
       type: String,
       required: true,
+    },
+    headers:{
+        type: Array as PropType<string[]>,
+        required:true
+    },
+    rows:{
+        type: Array as PropType<Article[]>,
+        required:true
     },
   },
   });
