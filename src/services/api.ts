@@ -34,7 +34,7 @@ export async function fetchArticleById(articleId: string): Promise<Article | nul
         const data: Article[] = await response.json();
 
         // Find the article using the selected ID
-        const article = data.find((article) => article.id === articleId);
+        const article = data.find((article) => article.id == articleId);
 
         if (article) {
             return article;
