@@ -3,7 +3,7 @@
         <div id="preview-article-container" class="container">
             <img class="article-thumbnail" src="https://picsum.photos/400" alt="">
             <div class="info-container">
-                <p class="title">{{ title }}</p>
+                <p class="title"><router-link :to="{ name: 'articleDetail', params: { id: id }}">{{ title }}</router-link></p>
                 <p class="article-author">Por: {{ articleAuthor }}</p>
                 <p class="article-date">Publicado el: {{ articleDate }}</p>
                 <p class="article-short">
@@ -16,10 +16,19 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
+import { RouterLink } from 'vue-router';
 
 export default defineComponent({
   name: "ArticlePreview",
+  components:{
+    RouterLink
+  },
   props: {
+    id:{
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -37,6 +46,14 @@ export default defineComponent({
       required: true,
     },
   },
+  methods: {
+    handleArticleClick(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
+      // Agrega cualquier lógica adicional que desees ejecutar cuando se hace clic en el enlace.
+      // Por ejemplo, puedes hacer algo antes de navegar a la ruta.
+
+      // Luego, puedes continuar con la navegación.
+      next();
+    },}
 });
 
 </script>

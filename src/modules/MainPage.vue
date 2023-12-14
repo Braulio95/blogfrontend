@@ -3,6 +3,7 @@
         <ArticlePreview
             v-for="article in articles"
             :key="article.id"
+            :id="article.id"
             :title="article.title"
             :articleAuthor="article.articleAuthor"
             :articleDate="article.articleDate"
