@@ -2,8 +2,8 @@
     <div class="dashboard-container">
         <div class="container">
             <h2>Bienvenido al dashboard</h2>
-            <Table></Table>
-            <Table></Table>
+            <Table table-title="Usuarios"></Table>
+            <Table table-title="Articulos"></Table>
         </div>
     </div>
 </template>
