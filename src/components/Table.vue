@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { Article } from "@/services/api";
+import { Article, User } from "@/services/api";
 
 export default defineComponent({
     name: "Table",
@@ -34,7 +34,7 @@ export default defineComponent({
         required:true
     },
     rows:{
-        type: Array as PropType<Article[]>,
+        type: Array as PropType<Article[] | User[]>,
         required:true
     },
   },

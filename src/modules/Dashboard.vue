@@ -2,7 +2,8 @@
     <div class="dashboard-container">
         <div class="container">
             <h2>Bienvenido al dashboard</h2>
-            <Table table-title="Articulos" :headers="headers" :rows="articles"></Table>
+            <Table table-title="Articulos" :headers="articleHeaders" :rows="articles"></Table>
+            <Table table-title="Usuarios" :headers="userHeaders" :rows="users"></Table>
         </div>
     </div>
 </template>
@@ -10,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Table from "../components/Table.vue"
-import { fetchArticles, Article } from '../services/api';
+import { fetchArticles, Article, User, fetchUsers } from '../services/api';
 
 export default defineComponent({
     name: "Dashboard",
@@ -20,11 +21,14 @@ export default defineComponent({
     data(){
     return{
         articles: [] as Article[],
-        headers: ['id','titulo','autor','fecha de creacion','contenido' ]
+        articleHeaders: ['id','titulo','autor','fecha de creacion','contenido' ],
+        users: [] as User[],
+        userHeaders: ['id', 'usuario', 'email', 'clave', 'creado el']
     }
   },
   created() {
     this.fetchArticles();
+    this.fetchUsers();
   },
   methods: {
     async fetchArticles() {
@@ -32,6 +36,13 @@ export default defineComponent({
         this.articles = await fetchArticles();
       } catch (error) {
         console.error('Error al obtener los artículos:', error);
+      }
+    },
+    async fetchUsers() {
+      try {
+        this.users = await fetchUsers();
+      } catch (error) {
+        console.error('Error al obtener los usuarios:', error);
       }
     }
   }

@@ -1,5 +1,42 @@
-// api.ts
+//GETTING DATA OF USERS
+export interface User {
+    id: string;
+    username: string;
+    email: string;
+    password: string;
+    createdAt: string;
+}
+export interface UserDB {
+    _id: string;
+    username: string;
+    email: string;
+    password: string;
+    createdAt: string;
+    _v: number
+}
 
+export async function fetchUsers(): Promise<User[]> {
+    try {
+        const response = await fetch('/users.json');
+        const data: UserDB[] = await response.json();
+        const parsedData = data.map(({ _id, username, email, password, createdAt }) => {
+            return ({
+                id: _id,
+                username: username,
+                email: email,
+                password: password,
+                createdAt: createdAt
+            })
+        })
+        return parsedData;
+    } catch (error) {
+        console.error('Error al obtener los usuarios:', error);
+        throw error;
+    }
+}
+
+
+//GETTING DATA OF ARTICLES
 export interface Article {
     id: string;
     title: string;
