@@ -4,14 +4,16 @@
         <table>
             <thead>
                 <tr>
-                    <th v-for="header in headers">{{header}}</th>
-                    <th>Acciones</th>
+                    <th v-for="header in headers">{{header.toUpperCase()}}</th>
+                    <th>ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in rows">
-                    <td v-for="value in Object.values(item)">{{ value }}</td>
-                    <td>Editar / Borrar</td>
+                <tr v-for="(item, index) in rows" :style="{ background: index % 2 === 0 ? '#f0f0f0' : '#ffffff' }">
+                    <td v-for="value in Object.entries(item)">
+                        {{ value[0] === 'password' ? '*********': value[1].length > 10 ?  `${value[1].slice(0,10)}...`:value[1]}}
+                    </td>
+                    <td><edit-icon class="icon"/> | <delete-icon class="icon"/></td>
                 </tr>
             </tbody>
         </table>
@@ -21,9 +23,15 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { Article, User } from "@/services/api";
+import EditIcon from '../assets/icons/EditIcon.vue'
+import DeleteIcon from '../assets/icons/DeleteIcon.vue'
 
 export default defineComponent({
     name: "Table",
+    components:{
+        EditIcon,
+        DeleteIcon
+    },
     props: {
     tableTitle:{
       type: String,
@@ -57,14 +65,14 @@ thead{
     color: white;
 }
 
-table, th, td {
-      border: 1px solid black;
-      
-    }
-
 th, td {
       padding: 10px;
       text-align: center;
     }
+
+.icon{
+    width: 30px;
+    height: 30px;
+}
 
 </style>
