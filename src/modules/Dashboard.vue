@@ -2,8 +2,10 @@
     <div class="dashboard-container">
         <div class="container">
             <h2>Bienvenido al dashboard</h2>
-            <Table table-title="Articulos" :headers="articleHeaders" :rows="articles"></Table>
-            <Table table-title="Usuarios" :headers="userHeaders" :rows="users"></Table>
+            <Table table-title="Articulos" :headers="articleHeaders" :rows="articles" objective-edit-modal="#editarticle"></Table>
+            
+            <Table table-title="Usuarios" :headers="userHeaders" :rows="users" objective-edit-modal="#edituser"></Table>
+            
         </div>
     </div>
 </template>
@@ -13,10 +15,12 @@ import { defineComponent } from "vue";
 import Table from "../components/Table.vue"
 import { fetchArticles, Article, User, fetchUsers } from '../services/api';
 
+
 export default defineComponent({
     name: "Dashboard",
     components:{
-        Table
+        Table,
+        
     },
     data(){
     return{

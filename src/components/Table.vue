@@ -13,7 +13,11 @@
                     <td v-for="value in Object.entries(item)">
                         {{ value[0] === 'password' ? '*********': value[1].length > 10 ?  `${value[1].slice(0,10)}...`:value[1]}}
                     </td>
-                    <td><edit-icon class="icon"/> | <delete-icon class="icon"/></td>
+                    <td>
+                        <button type="button" class="btn" data-bs-toggle="modal" :data-bs-target="objectiveEditModal" ><edit-icon class="icon"/></button> | <button><delete-icon class="icon"/></button>
+                        <PostArticleModal :article-id="item.id"/>
+                        <PostUserModal/>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -25,12 +29,17 @@ import { defineComponent, PropType } from "vue";
 import { Article, User } from "@/services/api";
 import EditIcon from '../assets/icons/EditIcon.vue'
 import DeleteIcon from '../assets/icons/DeleteIcon.vue'
+import PostArticleModal from '../components/PostArticleModal.vue'
+import PostUserModal from '../components/PostUserModal.vue'
+
 
 export default defineComponent({
     name: "Table",
     components:{
         EditIcon,
-        DeleteIcon
+        DeleteIcon,
+        PostArticleModal,
+        PostUserModal
     },
     props: {
     tableTitle:{
@@ -45,12 +54,20 @@ export default defineComponent({
         type: Array as PropType<Article[] | User[]>,
         required:true
     },
+    objectiveEditModal:{
+        type: String,
+        required:true
+    },
   },
   });
 
 </script>
 
 <style scoped>
+
+button{
+    border: none;
+}
 
 table {
       border-collapse: collapse;

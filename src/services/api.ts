@@ -47,17 +47,29 @@ export interface Article {
     articleDescription: string;
 }
 
+export interface ArticleDB {
+    _id: string;
+    title: string;
+    content: string;
+    date: string;
+    img: string;
+    user: string;
+    __v: 0;
+}
+
 export async function fetchArticles(): Promise<Article[]> {
+    const url = 'http://18.217.200.184:4000/v1/articles'
     try {
-        const response = await fetch('/articles.json');
-        const data: Article[] = await response.json();
-        const parsedData = data.map(({ id, title, articleAuthor, articleDate, articleDescription }) => {
+        const response = await fetch(url);
+        const data = await response.json();
+        const dbArticles: ArticleDB[] = data.articles;
+        const parsedData = dbArticles.map(({ _id, title, content, date, img, user }) => {
             return ({
-                id: `${id}`,
+                id: `${_id}`,
                 title: title,
-                articleAuthor: articleAuthor,
-                articleDate: articleDate,
-                articleDescription: articleDescription
+                articleAuthor: user,
+                articleDate: date,
+                articleDescription: content
             })
         })
         return parsedData;
@@ -68,13 +80,21 @@ export async function fetchArticles(): Promise<Article[]> {
 }
 
 export async function fetchArticleById(articleId: string): Promise<Article | null> {
+    const url = 'http://18.217.200.184:4000/v1/articles'
     try {
-        const response = await fetch('/articles.json');
-        const data: Article[] = await response.json();
+        const response = await fetch(`${url}/${articleId}`);
+        const data = await response.json();
 
         // Find the article using the selected ID
-        const article = data.find((article) => article.id == articleId);
-
+        const articleDB: ArticleDB = data.article;
+        //Parsing the article from the DB
+        const article: Article = {
+            id: articleDB._id,
+            title: articleDB.title,
+            articleAuthor: articleDB.user,
+            articleDate: articleDB.date,
+            articleDescription: articleDB.content
+        }
         if (article) {
             return article;
         } else {
