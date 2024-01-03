@@ -14,7 +14,10 @@
   </template>
   
   <script lang="ts">
-  export default {
+  import { loginUser } from '../services/api';
+  import { defineComponent } from "vue";
+  
+  export default defineComponent({
     data() {
       return {
         email: '',
@@ -24,34 +27,23 @@
     methods: {
       async login() {
         try {
-          const response = await fetch('http://18.217.200.184:4000/v1/signin', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email: this.email,
-              password: this.password,
-            }),
-          });
-  
-          if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Error en la autenticación:', errorData);
+          const token = await loginUser(this.email, this.password);
+
+          if (token === undefined) {
+            console.log("token undefined")
             return;
           }
-  
-          const token = await response.json();
+
           localStorage.setItem('authToken', token);
-  
+
           // Utiliza Vue Router para redirigir a la página después de la autenticación exitosa
           this.$router.push('/dashboard');
         } catch (error) {
           console.error('Error en la autenticación:', error);
         }
-      },
+    }
     },
-  };
+  });
   </script>
   
   <style>

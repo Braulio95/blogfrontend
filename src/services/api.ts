@@ -106,3 +106,30 @@ export async function fetchArticleById(articleId: string): Promise<Article | nul
         throw error;
     }
 }
+
+export async function loginUser(email: string, password: string): Promise<string | undefined> {
+    try {
+        const response = await fetch('http://18.217.200.184:4000/v1/signin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Error en la autenticación:', errorData);
+            return undefined;
+        }
+
+        const token = await response.json();
+        return token;
+    } catch (error) {
+        console.error('Error en la autenticación:', error);
+        return undefined;
+    }
+}
